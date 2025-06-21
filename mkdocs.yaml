@@ -1,0 +1,28 @@
+site_name: Offline Function Calling with Gemma
+theme:
+  name: shadcn
+  icon: streamline:ai-chip-spark
+  pygments_style: github-dark
+
+repo_url: https://github.com/offline-function-calling/sdk
+edit_uri: edit/main/docs/
+
+nav:
+  - Overview: index.md
+  - Setup:
+    - Tools: setup/tools.md
+    - Models: setup/models.md
+  - Learn:
+    - Hello, Function Calling!: learn/hello-world.md
+    - Structured and Scalable: learn/structured-and-scalable.md
+  - Benchmarks:
+    - Gemma 3: bench/gemma3.md
+
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab
