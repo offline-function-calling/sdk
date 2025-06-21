@@ -1,8 +1,9 @@
 __pycache__/
-*.py[oc]
-build/
-dist/
+.venv/
 wheels/
 *.egg-info
+*.py[oc]
 
-.venv
+build/
+dist/
+site/
