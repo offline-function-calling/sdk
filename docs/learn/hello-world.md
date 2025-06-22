@@ -4,7 +4,9 @@ summary: A look at what it is, what it can do, and how to do it.
 ---
 
 <style>
-  .codehilite { margin-top: 16px; }
+  .codehilite { margin-top: 16px; margin-bottom: 16px; }
+  html.dark .typography details summary::after { filter: invert(100%); }
+  #mkdocs-search-results article > h3 { color: var(--foreground); }
 </style>
 
 ## What it is
@@ -32,9 +34,11 @@ Function calling makes LLMs extremely useful for real world tasks, and being abl
 /// tab | Without Function Calling
 
 !!! note "`you`"
+
     &nbsp;What's the weather in Pune right now?
 
 !!! info "`model`"
+
     &nbsp;The weather in Pune, India right now (November 2, 2023) is:
 
     * **Temperature:** 27°C (81°F)
@@ -53,6 +57,7 @@ Now, click on the **With Function Calling** tab and see how differently the mode
 /// tab | With Function Calling
 
 !!! note "`you`"
+
     &nbsp;What's the weather in Pune right now?
 
 !!! info "`model`"
@@ -66,11 +71,11 @@ Now, click on the **With Function Calling** tab and see how differently the mode
           "temperature": 26,
           "feels_like": 28,
           "wind_speed": 23,
-          "wind_direction": "\u2192",
           "units": "metric"
         }
 
 !!! info "`model`"
+
     &nbsp;The weather in Pune is patchy rain and 26°C (feels like 28°C) with winds at 23km/h.
 
 Here, the model has access to a function named `get_weather`, and calls it in response to the user's message. The function call is parsed and executed by a program, and the function output is returned to the model. The model turns the function's JSON output into a natural language response for the user.
@@ -80,6 +85,7 @@ Here, the model has access to a function named `get_weather`, and calls it in re
 ## How to do it
 
 !!! note ""
+
     Before we start, you will need [`python`](../setup/tools.md#python), [`microsandbox`](../setup/tools.md#microsandbox) and [`ollama`](../setup/models.md) setup on your machine. Please refer to the linked setup guides to get them set up.
 
 To empower models with function calling capabilities, we need to follow [the five steps](#what-it-is): _instruction, discovery, calling, parsing, and execution_. Let us get started with the first step.
@@ -93,11 +99,13 @@ In most models, we can provide a 'system prompt', which models are trained to gi
 Let us start crafting our prompt. First, let us inform the model that it has a new capability, and how it should use it.
 
 !!! note ""
+
     You are a helpful assistant to me, the user. You have access to programmatic functions that you can call to better assist me. You are encouraged to call functions to help the user. You can only use the functions given to you. Do not make up your own functions.
 
 Then, let us tell it how to call a function. We want the model to print a python-style function call when it needs to call a function, and pass the parameters with their names.
 
 !!! note ""
+
     You can call these functions by producing a python-style function call in plain text only, passing all the parameters as named arguments. For example, to call a function named `do_something`, with the parameter `wait_for_it` set to `true` you must produce the following output: <br />
 
         :::md
@@ -108,6 +116,7 @@ Then, let us tell it how to call a function. We want the model to print a python
 Then, let us give it an idea of how the output will be returned, and what it should do with the output.
 
 !!! note ""
+
     The output of the function will be returned in the next message from the user. You must use the output of the function to generate a helpful natural language response for the user. Your response must satisfy the user's original question.
 
 Putting it all together, we get our function calling prompt. Click on the clipboard icon to copy the entire prompt as a string.
@@ -150,13 +159,13 @@ The function will produce a JSON object containing information about the weather
 To inform the model of this, we can give it the following instruction:
 
 !!! note ""
+
     When I ask for the current weather for a particular place, you can call the `fetch_weather` function and pass the `place` parameter (a string) with the place I mention. The place can be the name of a city or famous landmark, or an airport code. The function will produce a JSON object containing information about the weather condition, temperature and winds for the given place.
 
 These instructions make up our function discovery prompt. Click on the clipboard icon to copy the entire prompt as a string.
 
-```python
-"When I ask for the current weather for a particular place, you can call the `fetch_weather` function and pass the `place` parameter (a string) with the place I mention. The place can be the name of a city or famous landmark, or an airport code. The function will produce a JSON object containing information about the weather condition, temperature and winds for the given place."
-```
+    :::python
+    "When I ask for the current weather for a particular place, you can call the `fetch_weather` function and pass the `place` parameter (a string) with the place I mention. The place can be the name of a city or famous landmark, or an airport code. The function will produce a JSON object containing information about the weather condition, temperature and winds for the given place."
 
 This prompt helps the model 'discover' the `fetch_weather` function.
 
@@ -325,8 +334,8 @@ uv run examples/hello-world.py
 
 A lot of the things we did in this tutorial can be done better:
 
-- The current function discovery prompt is hard-coded to direct the model on how and when to call the `fetch_weather` function. This is unscalable - imagine having to write the same instructions for hundreds of functions!
-- With the current prompt, the model cannot perform complex tasks that require it to call functions in parallel (like asking for the weather in multiple cities), and/or chain function calls in a particular sequence (like comparing the weather between two cities and booking a flight to the city with the more pleasant weather).
+- The current function discovery prompt is hard-coded to direct the model on how and when to call the `fetch_weather` function. This is unscalable - imagine having to write similar instructions for hundreds of functions!
 - When calling multiple functions, the model needs to be able to keep track of which function call returned what output. The current prompt cannot properly do this.
+- With the current prompt, the model cannot perform complex tasks that require it to call functions in parallel (like asking for the weather in multiple cities), and/or chain function calls in a particular sequence (like comparing the weather between two cities and booking a flight to the city with the more pleasant weather).
 
 We'll take a look at how to address these problems in the next tutorial.

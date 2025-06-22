@@ -1,3 +1,13 @@
+---
+title: Offline Function Calling
+---
+
+<style>
+  .codehilite { margin-top: 16px; margin-bottom: 16px; }
+  html.dark .typography details summary::after { filter: invert(100%); }
+  #mkdocs-search-results article > h3 { color: var(--foreground); }
+</style>
+
 # Offline Function Calling
 
 Function calling is a powerful construct that allows large language models to use tools and interact with external APIs. It empowers LLMs to go beyond just generating text and actually do real world tasks for you, like checking the weather, re-organizing your files and folders, keeping track of your expenses, and much much more! Combined with the multimodal capabilities and offline nature of recent LLMs, function calling opens up a lot of amazing possibilities.

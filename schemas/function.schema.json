@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Function Specification Schema",
+  "description": "A JSON schema that details the function specification used by function calling models.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The function name, emmitted while invoking the function."
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the function, used by the model to understand what it does."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "A valid JSON schema of named parameters that can be passed to the function."
+    },
+    "responses": {
+      "type": "array",
+      "description": "A list of all possible responses returned by the function. The responses must be valid JSON schemas."
+    },
+    "errors": {
+      "type": "array",
+      "description": "A list of all possible exceptions raised/thrown by the function.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Examples that help the model understand when to invoke this function.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "prompt": { "type": "string" },
+          "parameters": { "type": "object" }
+        },
+        "required": ["description", "parameters"]
+      }
+    }
+  },
+  "required": ["name", "description", "parameters", "responses"]
+}
