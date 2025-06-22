@@ -14,7 +14,7 @@ nav:
     - Models: setup/models.md
   - Learn:
     - Hello, Function Calling!: learn/hello-world.md
-    - Structured and Scalable: learn/structured-and-scalable.md
+    - Structuring and Scaling: learn/structuring-and-scaling.md
   - Benchmarks:
     - Gemma 3: bench/gemma3.md
 
