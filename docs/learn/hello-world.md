@@ -3,8 +3,6 @@ title: Hello, Function Calling!
 summary: A look at what it is, what it can do, and how to do it.
 ---
 
-<style> .codehilite { margin-top: 16px; margin-bottom: 16px; } </style>
-
 ## What it is
 
 As you read on the overview page,

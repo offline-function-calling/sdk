@@ -3,8 +3,6 @@ title: Tools
 summary: Install and setup tools related to function calling on your machine
 ---
 
-<style> .codehilite { margin-top: 16px; margin-bottom: 16px; } </style>
-
 ## Python
 
 [`python`](https://github.com/python/cpython) is a programming language, and [`uv`](https://github.com/astral-sh/uv) is a package and version manager.

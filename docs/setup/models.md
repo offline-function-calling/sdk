@@ -3,8 +3,6 @@ title: Models
 summary: Setup and run models offline on your machine
 ---
 
-<style> .codehilite { margin-top: 16px; margin-bottom: 16px; } </style>
-
 ## Ollama
 
 [`ollama`](https://github.com/ollama/ollama) is one of the easiest ways to run open-source large language models offline on your machine. It provides a CLI and REST API to manage and run models.

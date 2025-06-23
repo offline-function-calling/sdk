@@ -4,7 +4,6 @@ summary: Scaling function calling by adding structure to our processes.
 ---
 
 <style>
-  .codehilite { margin-top: 16px; margin-bottom: 16px; }
   html.dark .typography details summary::after { filter: invert(100%); }
 </style>
 
