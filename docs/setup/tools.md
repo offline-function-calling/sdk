@@ -3,11 +3,7 @@ title: Tools
 summary: Install and setup tools related to function calling on your machine
 ---
 
-<style>
-  .codehilite { margin-top: 16px; margin-bottom: 16px; }
-  html.dark .typography details summary::after { filter: invert(100%); }
-  #mkdocs-search-results article > h3 { color: var(--foreground); }
-</style>
+<style> .codehilite { margin-top: 16px; margin-bottom: 16px; } </style>
 
 ## Python
 

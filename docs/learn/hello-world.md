@@ -3,11 +3,7 @@ title: Hello, Function Calling!
 summary: A look at what it is, what it can do, and how to do it.
 ---
 
-<style>
-  .codehilite { margin-top: 16px; margin-bottom: 16px; }
-  html.dark .typography details summary::after { filter: invert(100%); }
-  #mkdocs-search-results article > h3 { color: var(--foreground); }
-</style>
+<style> .codehilite { margin-top: 16px; margin-bottom: 16px; } </style>
 
 ## What it is
 

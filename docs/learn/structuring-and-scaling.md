@@ -6,7 +6,6 @@ summary: Scaling function calling by adding structure to our processes.
 <style>
   .codehilite { margin-top: 16px; margin-bottom: 16px; }
   html.dark .typography details summary::after { filter: invert(100%); }
-  #mkdocs-search-results article > h3 { color: var(--foreground); }
 </style>
 
 ## How we did it

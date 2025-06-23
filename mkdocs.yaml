@@ -1,4 +1,5 @@
 site_name: Offline Function Calling with Gemma
+site_url: https://offline-function-calling.github.io/
 theme:
   name: shadcn
   icon: streamline:ai-chip-spark
