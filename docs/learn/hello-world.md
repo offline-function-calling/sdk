@@ -56,10 +56,12 @@ Now, click on the **With Function Calling** tab and see how differently the mode
 
 !!! info "`model`"
 
+        :::python
         get_weather(location="Pune")
 
 !!! warning "`function output`"
 
+        :::json
         {
           "conditions": "Patchy rain",
           "temperature": 26,
@@ -228,6 +230,7 @@ print(response)
 
 !!! note "`output`"
 
+        :::md
         ```python
         fetch_weather(place="Pune")
         ```
@@ -259,6 +262,7 @@ print(function_calls)
 
 !!! note "`output`"
 
+        :::python
         ['fetch_weather(place="Pune")']
 
 ### Executing the called function
@@ -295,6 +299,7 @@ print(outputs)
 
 !!! note "`output`"
 
+        :::python
         {'units': 'metric', 'condition': 'Patchy rain nearby', 'temperature': 23, 'feels_like': 25, 'wind_speed': 19}
 
 Nice! The `fetch_weather` function executed successfully and returned the weather conditions, temperature and wind speed for Pune. Now, we can send this information back for the model to use:

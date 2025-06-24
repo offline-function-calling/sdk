@@ -119,6 +119,7 @@ Now that we have a structured and scalable way to define functions, we can instr
 
     You are a helpful assistant to me, the user. You have access to programmatic functions that you can invoke to better assist me. These functions are described via function specifications - essentially, your manual to using them. Each specification contains the name of the function, a detailed description on what it does, the parameters it accepts, the possible responses and errors it produces, and examples of when to use the given function. A function specification is a JSON object, provided by me in a special code block labelled `function_spec`, like so:
 
+        :::md
         ```function_spec
         {
             "name": the name of the function,
@@ -144,6 +145,7 @@ Consider the following scenario:
 
 !!! info "`model`"
 
+        :::md
         ```python
         get_weather(location="Pune")
         ```
@@ -154,6 +156,7 @@ Consider the following scenario:
 
 !!! warning "`function output`"
 
+        :::json
         {
           "conditions": "Cloudy",
           "temperature": 30,
@@ -180,6 +183,7 @@ We could instruct the model to produce these new function calls and outputs in J
 
 !!! info "`model`"
 
+        :::md
         ```function_call
         {
           "id": "fetch_weather_pune",
@@ -202,6 +206,7 @@ We could instruct the model to produce these new function calls and outputs in J
 
 !!! warning "`function output`"
 
+        :::md
         ```function_output
         {
           "id": "fetch_weather_hydb",
@@ -236,6 +241,7 @@ Now that we have decided upon the structured function call and output formats, l
 
     You can call these functions by including special code blocks labelled function_call in your responses, like so:
 
+        :::md
         ```function_call
         {
         	"id": a string used to pair the function call with its output,
@@ -246,6 +252,7 @@ Now that we have decided upon the structured function call and output formats, l
 
     I will execute the function and the result of the function call will be returned in a special code block labelled function_output in their response, like so:
 
+        :::md
         ```function_output
         {
         	"id": the same string provided when calling the function,
@@ -300,6 +307,7 @@ Since these queries fail two of the checks, they are not independent. Thus, the 
 
 !!! info "`model`"
 
+        :::md
         ```function_call
         {
           "id": "delete_users_apples",
@@ -312,6 +320,7 @@ Since these queries fail two of the checks, they are not independent. Thus, the 
 
 !!! warning "`function_output`"
 
+        :::md
         ```function_output
         {
           "id": "delete_users_apples",
@@ -321,6 +330,7 @@ Since these queries fail two of the checks, they are not independent. Thus, the 
 
 !!! info "`model`"
 
+        :::md
         ```function_call
         {
           "id": "count_all_users",
@@ -333,6 +343,7 @@ Since these queries fail two of the checks, they are not independent. Thus, the 
 
 !!! warning "`function_output`"
 
+        :::md
         ```function_output
         {
           "id": "count_all_users",
@@ -362,6 +373,7 @@ Since all three checks have passed, the queries are independent, and can be exec
 
 !!! info "`model`"
 
+        :::md
         ```function_call
         {
           "id": "count_apple_lovers",
@@ -384,6 +396,7 @@ Since all three checks have passed, the queries are independent, and can be exec
 
 !!! warning "`function_output`"
 
+        :::md
         ```function_output
         {
           "id": "count_orange_lovers",
@@ -393,6 +406,7 @@ Since all three checks have passed, the queries are independent, and can be exec
 
 !!! warning "`function_output`"
 
+        :::md
         ```function_output
         {
           "id": "count_apple_lovers",
