@@ -16,6 +16,7 @@ nav:
   - Learn:
     - Hello, Function Calling!: learn/hello-world.md
     - Structuring and Scaling: learn/structuring-and-scaling.md
+    - Multimodal Input: learn/multimodal-input.md
   - Benchmarks:
     - Gemma 3: bench/gemma3.md
 

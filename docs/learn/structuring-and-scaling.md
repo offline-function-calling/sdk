@@ -1,6 +1,7 @@
 ---
 title: Structuring and Scaling
 summary: Scaling function calling by adding structure to our processes.
+order: 2
 ---
 
 <style>

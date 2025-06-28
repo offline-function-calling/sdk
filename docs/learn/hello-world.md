@@ -1,6 +1,7 @@
 ---
 title: Hello, Function Calling!
 summary: A look at what it is, what it can do, and how to do it.
+order: 1
 ---
 
 ## What it is
@@ -224,7 +225,7 @@ Now that we have added all our prompts to the beginning of the conversation, we 
 task = "What is the weather in Pune right now?"
 messages.append({ "role": "user", "content": task })
 
-response = await chat(messages)
+response = await chat(session, messages, model)
 print(response)
 ```
 
