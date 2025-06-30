@@ -19,7 +19,8 @@ nav:
     - Dynamic Function Generation: learn/dynamic-function-generation.md
     - Multimodal Input: learn/multimodal-input.md
   - Benchmarks:
-    - Methods and Processes: bench/index.md
+    - Leaderboard: bench/leaderboard.md
+    - Method: bench/method.md
 
 plugins:
   - search
