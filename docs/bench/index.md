@@ -7,13 +7,13 @@ summary: How it is done, and what we can understand from it.
 
     Note that this page is a work in progress. Not all things mentioned on this page are complete, and some links may be broken.
 
-A leaderboard for function calling among various cloud-based and offline models exists in the form of the [Berkley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html). This project builds on top of this benchmark in the following ways.
+A benchmark for function calling among various cloud-based and offline models exists in the form of the [Berkley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html). This project builds on top of this benchmark in the following ways.
 
 ### Providing special prompts to the models
 
-Different models require different prompts to bring out the best of their capabilities. The leaderboard, however, provides a [standard system prompt](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt) to all models. This disadvantages models that do not have a system prompt, and have no prior instructions on how to go about function calling.
+Different models require different prompts to bring out the best of their capabilities. The leaderboard, however, provides a [standard system prompt](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt) to all models. This disadvantages models that do not have a system prompt, and have no prior instructions on how to go about function calling. In addition, this project aims to explore and extend the function calling capabilities of offline models to the fullest extent possible.
 
-This benchmark provides to the models a specially crafted prompt that has been observed to give the best results. These prompts are continuously iterated upon to better the function calling capabilities of the models.
+Therefore, this benchmark provides to the models a specially crafted prompt that has been observed to give the best results. These prompts are continuously iterated upon to better the function calling capabilities of the models.
 
 ### Providing detailed function specifications
 
