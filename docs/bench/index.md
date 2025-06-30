@@ -7,7 +7,7 @@ summary: How it is done, and what we can understand from it.
 
     Note that this page is a work in progress. Not all things mentioned on this page are complete, and some links may be broken.
 
-A benchmark for function calling among various cloud-based and offline models exists in the form of the [Berkley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html). This project builds on top of this benchmark in the following ways.
+A benchmark for function calling among various cloud-based and offline models exists in the form of the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html). This project builds on top of this benchmark in the following ways.
 
 ### Providing special prompts to the models
 
