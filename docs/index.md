@@ -9,6 +9,6 @@ Most current function calling implementations require cloud-based LLMs or server
 
 - [a library](https://github.com/offline-function-calling/sdk) that enables function calling with offline models,
 - [tutorials and guides](learn/hello-world.md) that help you get started with function calling, and
-- [benchmarks](bench) that explore different models' function calling capabilities.
+- [benchmarks](bench/leaderboard.md) that explore different models' function calling capabilities.
 
 Most of the content in this repository is currently centered around Gemma 3. Contributions that explore function calling using other offline models are welcome :)
