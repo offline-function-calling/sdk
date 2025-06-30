@@ -338,4 +338,4 @@ A lot of the things we did in this tutorial can be done better:
 - When calling multiple functions, the model needs to be able to keep track of which function call returned what output. The current prompt cannot properly do this.
 - With the current prompt, the model cannot perform complex tasks that require it to call functions in parallel (like asking for the weather in multiple cities), and/or chain function calls in a particular sequence (like comparing the weather between two cities and booking a flight to the city with the more pleasant weather).
 
-We'll take a look at how to address these problems in the next tutorial.
+We'll take a look at how to address these problems in the [next tutorial](./structuring-and-scaling.md).

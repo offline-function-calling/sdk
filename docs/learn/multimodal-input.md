@@ -1,14 +1,14 @@
 ---
 title: Multimodal Input
 summary: And how you can use it with function calling
-order: 3
+order: 4
 ---
 
 ## What it is
 
 The multi-modal input capabilities of a model enable it to understand more than just text - you can use image, video, and audio files in the conversation as well.
 
-The Gemma 3 (27B parameter) model we used in the [previous](./hello-world.md) [tutorials](./structuring-and-scaling.md) supports adding image files to the conversation. This tutorial will go through using this capability together with function calling, with the example of a simple expense tracker.
+The Gemma 3 (27B parameter) model we used in [the](./hello-world.md) [previous](./structuring-and-scaling.md) [tutorials](./dynamic-function-generation.md) supports adding image files to the conversation. This tutorial will go through using this capability together with function calling, with the simple expense tracker we built in the [last tutorial](./dynamic-function-generation.md).
 
 Here's a peak at the conversation you'll be having by the end of this tutorial:
 
@@ -16,7 +16,7 @@ Here's a peak at the conversation you'll be having by the end of this tutorial:
 
     <br />
     <blockquote>
-    [[image of bill](media/bill.jpg)]
+    [[image of bill](../media/bill.jpg)]
     </blockquote>
 
     <br />
@@ -28,7 +28,7 @@ Here's a peak at the conversation you'll be having by the end of this tutorial:
 
 ## How to do it
 
-### Reading and encoding images for models
+### Reading and encoding images
 
 Making use of a model's multimodal capabilities is easy to do using Ollama. Recall [the function we wrote](./hello-world.md#getting-the-model-to-call-functions) to make requests to the Ollama REST API in the first tutorial:
 
@@ -104,53 +104,29 @@ def encode_image(path: str) -> str:
 
 Now, we can add this to the existing `chat` function:
 
-```{ .python hl_lines="7 8 9 10" }
-from aiohttp import ClientSession, ClientTimeout
+```diff
+ session = ClientSession(timeout=timeout)
 
-timeout = ClientTimeout(total=300)
-session = ClientSession(timeout=timeout)
+ async def chat(session, messages, model, server="http://localhost:11434"):
++    for message in messages:
++        if "images" in message:
++            encoded = [encode_image(path) for path in message["images"]]
++            message["images"] = encoded
 
-async def chat(session, messages, model, server="http://localhost:11434"):
-    for message in messages:
-        if "images" in message:
-            encoded = [encode_image(path) for path in message["images"]]
-            message["images"] = encoded
-
-    endpoint = f"{server}/api/chat"
-    payload = {
-        "model": model,
-        "messages": messages,
-        "stream": False,
-        "options": {
-            "num_ctx": 8192,
-            "top_p": 0.95,
-        }
-    }
-
-    async with session.post(endpoint, json=payload) as response:
-        response.raise_for_status()
-
-        response = await response.json()
-        content = response["message"]["content"]
-        messages.append({
-          "role": "assistant", "content": content
-        })
-
-        return content
+     endpoint = f"{server}/api/chat"
+     payload = {
+         "model": model,
 ```
+
+### Using the images in conversations
 
 We can use this to provide the model with images on disk, like so:
 
 ```python
 task = "Add this to my expenses, and let me know if I'm going over my food budget of 1000 this month."
-messages.append({
-    "role": "user",
-    "content": task,
-    "images": ["~/media/bill.jpg"]
-})
+messages = [{ "role": "user", "content": task, "images": ["~/media/bill.jpg"] }]
 
 response = await chat(session, messages, model)
 print(response)
 ```
 
-### Using the images with function calls
