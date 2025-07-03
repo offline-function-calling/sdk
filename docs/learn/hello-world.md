@@ -176,7 +176,7 @@ Let's start by selecting a model and writing code to chat with it via `ollama`.
 model = "gemma3:27b"
 ```
 
-We'll be using the Gemma 3 (27B parameter) model, since it is [good at function calling](../bench/gemma3.md).
+We'll be using the Gemma 3 (27B parameter) model, since it is [good at function calling](../bench/leaderboard.md).
 
 To chat with the model, we can use the `ollama` REST API, like so:
 

@@ -4,6 +4,10 @@ summary: And how you can use it with function calling
 order: 4
 ---
 
+!!! danger ""
+
+    Note that this page is a work in progress.
+
 ## What it is
 
 The multi-modal input capabilities of a model enable it to understand more than just text - you can use image, video, and audio files in the conversation as well.

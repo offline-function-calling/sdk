@@ -4,10 +4,9 @@ summary: Why write functions... when models can do it for you :)
 order: 3
 ---
 
-
 !!! danger ""
 
-    Note that this page is a work in progress. Not all things mentioned on this page are complete, and some links may be broken.
+    Note that this page is a work in progress.
 
 ## What it is
 
