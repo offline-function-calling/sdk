@@ -210,7 +210,7 @@ async def chat(session, messages, model, server="http://localhost:11434"):
         return content
 ```
 
-Create an list to hold our conversation history, and add the prompts from our instruction and discovery steps to the conversation, like so:
+Let us also create a list to hold our conversation history, and add the prompts from our instruction and discovery steps to the it, like so:
 
 ```python
 messages = [
