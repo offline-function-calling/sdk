@@ -7,8 +7,8 @@ Function calling is a powerful construct that allows large language models to us
 Most current function calling implementations require cloud-based LLMs or servers. Advances in offline models such as Gemma 3n have brought both multimodal and function calling capabilities to our devices, however, there is a lack of documentation and tooling that enables us to make use of it. This project aims to remedy that by becoming a comprehensive source of knowledge regarding function calling in offline large language models. To date, it consists of:
 
 - [a library](https://github.com/offline-function-calling/sdk) that enables function calling with offline models,
-- [tutorials and guides](learn/hello-world.md) that help you get started with function calling, and
-- [benchmarks](bench/gemma3.md) that explore different models' function calling capabilities.
+- [tutorials and guides](https://offline-function-calling.github.io/learn/hello-world/) that help you get started with function calling, and
+- [benchmarks](https://offline-function-calling.github.io/bench/methodology) that explore different models' function calling capabilities.
 
 Most of the content in this repository is currently centered around Gemma 3. Contributions that explore function calling using other offline models are welcome :)
 
