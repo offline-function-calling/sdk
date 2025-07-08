@@ -403,7 +403,7 @@ for call in function_calls:
             print(json.dumps({{
                 "id": {repr(call["id"])},
                 "result": {call["function"]}({call["parameters"]})
-            }}, indent=4))
+            }}, indent=2))
         except Exception as error:
             print(json.dumps({{
                 "id": {repr(call["id"])},
@@ -411,7 +411,7 @@ for call in function_calls:
                     "name": type(error).__name__,
                     "message": str(error)
                 }}
-            }}, indent=4))
+            }}, indent=2))
     """)
 
     runner = await sandbox.run(f"{func}({args})")
@@ -426,8 +426,8 @@ print(response)
         :::md
         ```function_output
         {
-            "id": "1",
-            "result": true
+          "id": "1",
+          "result": true
         }
         ```
 

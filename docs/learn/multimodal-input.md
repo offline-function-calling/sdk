@@ -4,10 +4,6 @@ summary: And how you can use it with function calling
 order: 4
 ---
 
-!!! danger ""
-
-    Note that this page is a work in progress.
-
 ## What it is
 
 The multi-modal input capabilities of a model enable it to understand more than just text - you can use image, video, and audio files in the conversation as well.
@@ -18,17 +14,14 @@ Here's a peak at the conversation you'll be having by the end of this tutorial:
 
 !!! note "`you`"
 
-    <br />
-    <blockquote>
-    [[image of bill](../media/bill.jpg)]
-    </blockquote>
-
-    <br />
-    Add this to my expenses, and let me know if I'm going over my food budget of 1000 this month.
+    <div style="display: flex; flex-direction: column; margin-top: 8px">
+      <img  src="/media/bill.jpg" alt="image of bill" style="width: 200px; border-radius: 0 16px 0 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); margin-bottom: 12px" />
+      <div>Add this to my expenses, and let me know if I'm going over my food budget of 1000 this month.</div>
+    </div>
 
 !!! info "`model`"
 
-    &nbsp;You've spent a total of 1278.5 on food this month, which exceeds your budget of 1000 by 278.5. It looks like that dinner at TSC put you over the limit!
+    &nbsp;You've spent a total of 1278.5 on food this month, which exceeds your budget of 1000 by 278.5. It looks like that dinner put you over the limit!
 
 ## How to do it
 
@@ -122,15 +115,46 @@ Now, we can add this to the existing `chat` function:
          "model": model,
 ```
 
-### Using the images in conversations
+### Using the images with function calling
 
-We can use this to provide the model with images on disk, like so:
+First, let us provide it the prompt and the function specifications from [the previous tutorial](./dynamic-function-generation.md#getting-the-model-to-call-the-functions).
 
 ```python
-task = "Add this to my expenses, and let me know if I'm going over my food budget of 1000 this month."
-messages = [{ "role": "user", "content": task, "images": ["~/media/bill.jpg"] }]
+prompt = "You are a helpful assistant to me, the user..."
+functions = "```function_spec\n{ \"name\": \"record_expense\"..."
 
+messages.append({ "role": "user", "content": prompt })
+messages.append({ "role": "user", "content": functions })
+```
+
+Now that we can use images in the chat, let's take this picture of a restaurant bill and ask Gemma to add it to our expenses.
+
+```python
+image = "media/bill.jpg"
+task = "Add this bill to my expenses."
+
+messages.append({ "role": "user", "content": task, "images": [image] })
 response = await chat(session, messages, model)
+
 print(response)
 ```
 
+!!! note "`output`"
+
+        :::md
+        ```function_call
+        {
+        	"id": "2",
+        	"function": "record_expense",
+        	"parameters": {
+        		"date": "2025-05-04",
+        		"category": "food",
+        		"amount": 588.0,
+        		"description": "dinner"
+        	}
+        }
+        ```
+
+Nice! The model extracted the relevant information from the image, and used it to call the relevant function. To parse and execute this function call, use [the code from the previous tutorial](./dynamic-function-generation.md#parsing-and-executing-the-function-call).
+
+Congratulations! You've completed your first conversation that uses multimodal input and function calling to accomplish a task, and all of it completely offline :)

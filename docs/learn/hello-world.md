@@ -168,7 +168,7 @@ This prompt helps the model 'discover' the `fetch_weather` function.
 
 ### Getting the model to call functions
 
-Upto this point in the tutorial, we have not written any code at all! That's because half of function calling is ensuring that the model is provided the right instructions and functions so it can call them as needed.
+Upto this point in the tutorial, we have not written any code at all apart from the `fetch_weather` function! That's because half of function calling is ensuring that the model is provided the right instructions and functions so it can call them as needed.
 
 Let's start by selecting a model and writing code to chat with it via `ollama`.
 
@@ -268,7 +268,7 @@ print(function_calls)
 
 ### Executing the called function
 
-To execute the called function, we use `microsandbox` to spin up a secure sandbox, define the function, run the function call, and return the output. The sandbox provides safety when running unknown or model-generated code.
+To execute the called function, we use `microsandbox` to spin up a secure sandbox, define the function, run the function call, and return the output. The sandbox provides safety when running unknown or [model-generated](./dynamic-function-generation.md) code.
 
 ```python
 from microsandbox import PythonSandbox
