@@ -82,7 +82,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 
 <br/> <hr />
 
-**Parameter Type Coercion**
+**Parameter Extraction**
 <br /><small> `parameter-transformation` `function-calling` </small>
 
 !!! info "`functions`"
@@ -100,7 +100,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 
 <br/> <hr />
 
-**Multi-Format Parameter Handling**
+**Parameter Transformation**
 <br /><small> `parameter-transformation` `function-calling` </small>
 
 !!! info "`functions`"
@@ -119,7 +119,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 <br/> <hr />
 
 **Resolving Ambiguous Function Choice**
-<br /><small> `function-selection` `handling-ambiguity` `parameter-extraction` </small>
+<br /><small> `function-selection` `handling-ambiguity` `parameter-transformation` </small>
 
 !!! info "`functions`"
 
@@ -139,29 +139,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 
 <br/> <hr />
 
-**Resolving Ambiguous User Intent**
-<br /><small> `function-selection` `handling-ambiguity` </small>
-
-!!! info "`functions`"
-
-        :::python
-        get_latest_commits(project_name: str, limit: int = 10, author: str = None) -> list
-        get_open_tickets(project_name: str, severity: str = None, assignee: str = None) -> list
-        get_deployment_status(project_name: str, environment: str = "production") -> dict
-        get_project_metrics(project_name: str, timeframe: str = "week") -> dict
-        send_project_notification(project_name: str, message: str, recipients: list) -> bool
-
-!!! note "`question`"
-
-    &nbsp;Can you give me an update on 'Project Phoenix'?
-
-!!! warning "`expected`"
-
-    &nbsp;The model must recognize that "update" is ambiguous andl language. It should present available options clearly: development activity (recent commits), issue tracking (open tickets), deployment status, or performance metrics. The model must NOT make assumptions or call any functionld avoid simply listing technical function names.
-
-<br/> <hr />
-
-**State-Dependent Workflow Chaining**
+**Stateful Composite Calling**
 <br /><small> `composite-calling` `context-application` `output-understanding` </small>
 
 !!! info "`functions`"
@@ -181,7 +159,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 
 <br/> <hr />
 
-**Cross-System Data Integration**
+**Parallel Function Calling**
 <br /><small> `parallel-calling` `output-understanding` `parameter-transformation` </small>
 
 !!! info "`functions`"
@@ -243,7 +221,7 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 
 <br/> <hr />
 
-**Complex Dynamic Function Generation**
+**Dynamic Function Generation**
 <br /><small> `function-generation` `function-discovery` `parameter-transformation` `parallel-calling`</small>
 
 !!! info "`functions`"
