@@ -136,7 +136,30 @@ Our benchmark evaluates models against the following 15 parameters, which are te
 !!! warning "`expected`"
 
     &nbsp;The model should select `search_products` and properly infer parameters: `query="wireless headphones"`, `price_range=(0, 100)`, and `rating_min=4.0` (inferred from "good reviews"). It must recognize that `filter_products` requires existing product IDs, `get_product_recommendations` needs a user_id, and `get_similar_products` needs a reference product - none of which are available.
+      
+<br/> <hr />
 
+**Handling Missing Information**
+<br /><small> `missing-functions` `missing-parameters` `context-application` `function-selection` </small>
+
+!!! info "`functions`"
+
+        :::python
+        list_calendar_events(start_date: str, end_date: str) -> list
+        send_email(recipient_email: str, subject: str, body: str) -> dict
+
+!!! note "`question`"
+
+    Book 'Conference Room 4B' for 10 AM tomorrow for a meeting to plan out Q3.
+
+!!! note "`followup`"
+
+     Okay, in that case, just send an email to book it.
+
+!!! warning "`expected`"
+
+     This is a multi-turn test. First, the model must recognize it lacks a tool to book rooms and inform the user. When the user asks the model to send an email instead, it must then identify the `send_email` tool but recognize it's missing parameters (recipient). After asking for and receiving this information, it must successfully call the `send_email` function using context from the entire conversation.
+ 
 <br/> <hr />
 
 **Stateful Composite Calling**
