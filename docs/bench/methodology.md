@@ -1,4 +1,16 @@
-Our benchmark evaluates models against the following 15 parameters, which are tested across the scenarios listed below. You can view the leaderboard [here](./leaderboard.md).
+---
+title: Benchmarking Methodology
+summary: How we measure the function calling capability of a model
+order: 2
+---
+
+This benchmark evaluates models on the following 15 parameters, which are tested across the 10 scenarios listed below. You can view the leaderboard [here](./leaderboard.md).
+
+This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](https://gorilla.cs.berkeley.edu/leaderboard.html) by expanding its [test categories](https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/TEST_CATEGORIES.md) to include error handling, constraint enforcement, and function synthesis. It defines 15 evaluation parameters that cover the full function call pipeline: function discovery and selection, parameter extraction and transformation, function invocation, and output interpretation. Each parameter is tested through targeted scenarios that assess model behavior under both standard and edge-case conditions.
+
+!!! info ""
+
+    The tests are run using [promptfoo](https://github.com/promptfoo/promptfoo). The scenarios (consisting of the user prompts, functions specifications, and function outputs) are written in markdown, and are accompanied by a single yaml file that is used by the test runner. A few custom scripts are used to analyze the results of the tests, and turn them into the leaderboard page. All of this data and code can be found in [this](https://github.com/offline-function-calling/benchmarks) repository.
 
 ### Parameters
 
