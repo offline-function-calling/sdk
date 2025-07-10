@@ -4,6 +4,7 @@ theme:
   name: shadcn
   icon: streamline:ai-chip-spark
   pygments_style: github-dark
+  custom_dir: docs/theme/
 
 repo_url: https://github.com/offline-function-calling/sdk
 edit_uri: edit/main/docs/

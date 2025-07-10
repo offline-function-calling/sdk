@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "{{ config.site_url }}";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    {% include "templates/seo.html" %}
+    <link rel="icon" href="{{ 'img/favicon.ico' | url }}">
+    <link href="{{ 'css/base.css' | url }}" rel="stylesheet">
+    <link href="{{ 'css/geist.css' | url }}" rel="stylesheet">
+    {% if config.theme.pygments_style %}
+    <link href="{{ ('css/pygments/' + config.theme.pygments_style + '.css') | url }}" rel="stylesheet">
+    {% endif %}
+    {%- for path in config.extra_css %}
+    <link href="{{ path | url }}" rel="stylesheet">
+    {%- endfor %}
+
+    <script src="{{ 'js/callbacks.js' | url }}"></script>
+
+    {% if "pymdownx.arithmatex" in config.markdown_extensions %}
+    {% include "templates/katex.html" %}
+    {% endif %}
+
+    {% if "shadcn.extensions.echarts.alpha" in config.markdown_extensions %}
+    {% include "templates/echarts.html" %}
+    {% endif %}
+
+    {% if "shadcn/excalidraw" in config.plugins and is_dev_server %}
+    {% include "templates/excalidraw.html" %}
+    {% endif %}
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        {% include "templates/header.html" %}
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        {% include "templates/sidebar.html" %}
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 {% if page.title != 'Leaderboard' %} xl:grid xl:grid-cols-[1fr_300px] {% endif %}">
+                        <div class="mx-auto w-full min-w-0 {% if page.title != 'Leaderboard' %} xl:max-w-2xl {% endif %}">
+                            {% include "templates/page.html" %}
+                        </div>
+                        {% if page.title != "Leaderboard" %}
+                        <div class="hidden text-sm xl:block">
+                            {% include "templates/toc.html" %}
+                        </div>
+                        {% endif %}
+                    </main>
+                </div>
+            </div>
+            {% include "templates/bottom_sidebar.html" %}
+        </div>
+    </div>
+
+
+
+    {%- for script in config.extra_javascript %}
+    {%- if script.path %} {# Detected MkDocs 1.5+ which has `script.path` and `script_tag` #}
+    {{ script | script_tag }}
+    {%- else %} {# Fallback - examine the file name directly #}
+    {% if script.endswith('.mjs') %}
+    <script src="{{ script | url }}" type="module"></script>
+    {% else %}
+    <script src="{{ script | url }}"></script>
+    {% endif %}
+    {%- endif %}
+    {%- endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="{{ 'js/copy-button.js' | url }}"></script>
+</body>
+
+</html>
