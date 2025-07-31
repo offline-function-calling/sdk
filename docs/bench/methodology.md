@@ -34,9 +34,9 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 
     &nbsp;The model must be able to produce valid, executable function calls that conform to the defined API, with correctly named parameters and formatted arguments.
 
-!!! note "`output-understanding`"
+!!! note "`context-understanding`"
 
-    &nbsp;The model must make use of the data returned by a function to generate helpful, user-friendly responses and inform subsequent actions.
+    &nbsp;The model must make use of the information from earlier in the conversation, including data returned by a function to generate helpful, user-friendly responses and inform subsequent actions.
 
 !!! note "`parallel-calling`"
 
@@ -46,9 +46,9 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 
     &nbsp;The model must be able to plan ahead and chain function calls in sequence, where the output of one function is used as the input for the next.
 
-!!! note "`context-application`"
+!!! note "`no-hallucinations`"
 
-    &nbsp;The model must be able to use information from earlier in the conversation, including user prompts and previous function call outputs, for subsequent tasks.
+    &nbsp;The model must not hallucinate (e.g., calling functions that do not exist, generating function outputs on its own, passing made-up parameters, etc.).
 
 !!! note "`error-handling`"
 
@@ -64,7 +64,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 
 !!! note "`handling-ambiguity`"
 
-    &nbsp;When faced with a vague request, the model must ask the user about their intent or the specific entities involved, rather than guessing.
+    &nbsp;When faced with a vague request, the model must use the conversation history to make an informed assumption, or ask the user for clarification, as appropriate.
 
 !!! note "`constraint-adherence`"
 
@@ -95,7 +95,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Parameter Extraction**
-<br /><small> `parameter-transformation` `function-calling` </small>
+<br /><small> `function-discovery` `parameter-extraction` `function-calling` </small>
 
 !!! info "`functions`"
 
@@ -113,7 +113,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Parameter Transformation**
-<br /><small> `parameter-transformation` `function-calling` </small>
+<br /><small> `function-discovery` `parameter-transformation` `function-calling` </small>
 
 !!! info "`functions`"
 
@@ -131,7 +131,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Resolving Ambiguous Function Choice**
-<br /><small> `function-selection` `handling-ambiguity` `parameter-transformation` </small>
+<br /><small> `function-discovery` `function-selection` `handling-ambiguity` `parameter-transformation` `function-calling`</small>
 
 !!! info "`functions`"
 
@@ -152,7 +152,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Handling Missing Information**
-<br /><small> `missing-functions` `missing-parameters` `context-application` `function-selection` </small>
+<br /><small>`function-discovery` `missing-functions` `missing-parameters` `context-understanding` `function-selection` `function-calling` </small>
 
 !!! info "`functions`"
 
@@ -175,7 +175,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Stateful Composite Calling**
-<br /><small> `composite-calling` `context-application` `output-understanding` </small>
+<br /><small> `function-discovery` `function-selection` `context-understanding` `composite-calling`</small>
 
 !!! info "`functions`"
 
@@ -195,7 +195,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Parallel Function Calling**
-<br /><small> `parallel-calling` `output-understanding` `parameter-transformation` </small>
+<br /><small> `function-discovery` `function-selection` `context-understanding` `parameter-transformation` `parallel-calling` </small>
 
 !!! info "`functions`"
 
@@ -203,7 +203,6 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
         crm_get_customer(customer_id: str) -> dict
         billing_get_invoices(customer_id: str) -> list
         support_get_tickets(customer_id: str) -> list
-        merge_customer_profile(crm_data: dict, billing_data: list, support_data: list) -> dict
 
 !!! note "`question`"
 
@@ -211,12 +210,12 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 
 !!! warning "`expected`"
 
-    &nbsp;The model should recognize the need to gather data from multiple systems. It must make parallel calls to `crm_get_customer`, `billing_get_invoices`, and `support_get_tickets`, then use the collected data to call `merge_customer_profile`.
+    &nbsp;The model should recognize the need to gather data from multiple systems. It must make parallel calls to `crm_get_customer`, `billing_get_invoices`, and `support_get_tickets`, then use the collected data to give a comprehensive response to the user.
 
 <br/> <hr />
 
 **Cascading Error Recovery**
-<br /><small> `error-handling` `composite-calling` `function-selection` </small>
+<br /><small> `function-discovery` `function-selection`  `error-handling` `composite-calling` </small>
 
 !!! info "`functions`"
 
@@ -237,7 +236,7 @@ This leaderboard builds on the [Berkeley Function Calling Leaderboard (BFCL)](ht
 <br/> <hr />
 
 **Adhering to Contextual Constraints**
-<br /><small> `constraint-adherence` `function-selection` `context-application` </small>
+<br /><small> `function-discovery` `function-selection` `constraint-adherence` `context-understanding` </small>
 
 !!! info "`functions`"
 
