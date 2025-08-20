@@ -112,7 +112,7 @@ We use an OpenAPI-inspired JSON schema to provide information on the name of a f
 
 !!! note ""
 
-    The JSON schema document used to validate function specifications can be found [here](https://github.com/offline-function-calling/schemas/function.schema.json).
+    The JSON schema document used to validate function specifications can be found [here](https://github.com/offline-function-calling/sdk/blob/main/docs/schemas/function.schema.json).
 
 Now that we have a structured and scalable way to define functions, we can instruct the model to 'discover' and use any functions that are described by a function specification:
 

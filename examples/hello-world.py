@@ -5,6 +5,7 @@ from textwrap import dedent
 from aiohttp import ClientSession, ClientTimeout
 from microsandbox import PythonSandbox
 
+
 async def chat(session, messages, model, server="http://localhost:11434"):
     endpoint = f"{server}/api/chat"
     payload = {
@@ -14,7 +15,7 @@ async def chat(session, messages, model, server="http://localhost:11434"):
         "options": {
             "num_ctx": 8192,
             "top_p": 0.95,
-        }
+        },
     }
 
     async with session.post(endpoint, json=payload) as response:
@@ -22,11 +23,10 @@ async def chat(session, messages, model, server="http://localhost:11434"):
 
         response = await response.json()
         content = response["message"]["content"]
-        messages.append({
-          "role": "assistant", "content": content
-        })
+        messages.append({"role": "assistant", "content": content})
 
         return content
+
 
 async def main():
     model = "gemma3:27b"
@@ -36,9 +36,9 @@ async def main():
     task = "What is the weather in Pune right now?"
 
     messages = [
-        { "role": "user", "content": instruction },
-        { "role": "user", "content": discovery },
-        { "role": "user", "content": task }
+        {"role": "user", "content": instruction},
+        {"role": "user", "content": discovery},
+        {"role": "user", "content": task},
     ]
 
     timeout = ClientTimeout(total=300)
@@ -76,11 +76,12 @@ async def main():
     outputs = "\n\n".join(responses)
     print(outputs)
 
-    messages.append({ "role": "user", "content": outputs })
+    messages.append({"role": "user", "content": outputs})
     response = await chat(session, messages, model)
     print(response)
 
     await sandbox.stop()
     await session.close()
+
 
 asyncio.run(main())

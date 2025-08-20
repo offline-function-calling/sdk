@@ -58,7 +58,7 @@ Let's give it some guidelines on how to write a function specification as well.
     <br /><br />
     Note that the produced specification must be a valid JSON object. Do NOT re-produce this schema as a function specification.
 
-Where `{schema}` must be replaced by [the JSON schema for function specifications](https://github.com/offline-function-calling/sdk/schemas/function.schema.json).
+Where `{schema}` must be replaced by [the JSON schema for function specifications](https://github.com/offline-function-calling/sdk/blob/main/docs/schemas/function.schema.json).
 
 Putting it all together, we get our function calling prompt. Click on the clipboard icon to copy the entire prompt as a string.
 
