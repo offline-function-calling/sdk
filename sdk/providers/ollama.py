@@ -1,4 +1,4 @@
-from typing import List, AsyncIterator, Union, Dict, Callable, Any
+from typing import List, AsyncIterator, Dict, Callable, Any
 from ollama import AsyncClient, ResponseError
 
 from sdk.types import Message, Part, ToolCall, Model
@@ -54,10 +54,10 @@ class OllamaProvider(BaseProvider):
         async for chunk in stream:
             if tool_calls := chunk["message"].get("tool_calls"):
                 for tool_call in tool_calls:
-                    tool_calls.append(ToolCall(
-                        id=tool_call.get("id", None),
-                        tool=tool_call.get("function", {}).get("name"),
-                        parameters=tool_call.get("function", {}).get("arguments", {}),
+                    yield Part(kind="tool_call", data=ToolCall(
+                        id=None,
+                        tool=tool_call.function.name,
+                        parameters=tool_call.function.arguments or {},
                     ))
             elif content := chunk["message"].get("content"):
                 yield Part(kind="text", data=content)

@@ -1,9 +1,9 @@
-from pathlib import Path
 from typing import List, Optional, AsyncIterator, Union, Dict, Any
 
-from .types import Message, ToolCall, Part
+from .types import Message, Part
 from .providers.base import BaseProvider
 from .tools import ToolManager
+from .files import FileManager
 
 
 class Agent:
@@ -71,12 +71,12 @@ class Agent:
                 full_response += part.data
                 yield part
             elif part.kind == "tool_call":
-                tool_calls.append(part.data)
+                tool_calls.append(part)
                 # yield the tool calls at the end
 
         parts = [Part(kind="text", data=full_response), *tool_calls]
         self.history.append(Message(role="assistant", parts=parts))
 
         if tool_calls:
-            for call in tool_calls:
-                yield call
+            for call_part in tool_calls:
+                yield call_part

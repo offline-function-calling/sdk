@@ -1,6 +1,6 @@
 from mimetypes import guess_file_type
 from pathlib import Path
-from typing import Callable, Dict, List, Any
+from typing import List
 
 from markitdown import MarkItDown
 

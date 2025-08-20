@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Iterator, Union, Dict, Callable, Any
+from typing import List, Iterator, Union, Dict, Callable
 
 from sdk.types import Message, Model
 
