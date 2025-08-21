@@ -23,7 +23,7 @@ class Agent:
         self.system_prompt = prompt
         self.history: List[Message] = []
 
-        self.file_manager: FileManager()
+        self.file_manager = FileManager()
         self.tool_dirs = [tools] if isinstance(tools, str) else tools or []
         self.tool_manager = ToolManager(self.tool_dirs)
 
