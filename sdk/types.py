@@ -7,7 +7,7 @@ class File:
     name: str
     uri: str
     mime: str
-    contents: str
+    contents: Union[str, bytes]
 
 
 @dataclass

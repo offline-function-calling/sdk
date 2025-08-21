@@ -25,7 +25,7 @@ class OllamaProvider(BaseProvider):
                 formatted["content"] += part.data
             elif part.kind == "file":
                 if part.data.mime.startswith("image/"):
-                    formatted["images"].append(part.data.uri)
+                    formatted["images"].append(part.data.contents)
                 else:
                     header = "=" * 13
                     formatted["content"] += f"\n\n{header}\nFile: {part.data.name}\n{header}\n"

@@ -25,6 +25,10 @@ class FileManager:
 
         mime, _ = guess_file_type(path)
         name, uri = path.stem, path.as_uri()
-        contents = self.converter.convert(path)
+
+        if mime.startswith("image/"):
+            contents = path.read_bytes()
+        else:
+            contents = self.converter.convert(path)
 
         return File(name=name, uri=uri, mime=mime, contents=contents)
