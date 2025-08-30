@@ -1,6 +1,7 @@
 ---
 title: Tools
-summary: Install and setup tools related to function calling on your machine
+summary: Install and setup tools for the tutorials
+order: 3
 ---
 
 ## Python

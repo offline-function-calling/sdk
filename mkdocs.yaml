@@ -12,8 +12,9 @@ edit_uri: edit/main/docs/
 nav:
   - Overview: index.md
   - Setup:
-    - Tools: setup/tools.md
+    - CLI: setup/cli.md
     - Models: setup/models.md
+    - Tools: setup/tools.md
   - Learn:
     - Hello, Function Calling!: learn/hello-world.md
     - Structuring and Scaling: learn/structuring-and-scaling.md
